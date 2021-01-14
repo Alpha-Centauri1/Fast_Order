@@ -7,6 +7,18 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_soft_drinks_actitvity">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="placeholder">Please select one of the drinks</string>
+    <string name="ordersNotFound">No client orders found</string>
+    <string name="clientOrders">Client Orders</string>
+    <string name="plus">+</string>
+    <string name="drinkName">Drink</string>
+    <string name="drinkPrice">5</string>
+    <string name="drinkAmount">1</string>
+    <string name="hardDrinks">Hard Drinks</string>
+    <string name="softDrinks">Soft Drinks</string>
 </resources>
