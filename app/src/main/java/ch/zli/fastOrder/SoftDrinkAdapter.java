@@ -1,7 +1,6 @@
 package ch.zli.fastOrder;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,33 +11,32 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SoftDrinkAdapter extends RecyclerView.Adapter<SoftDrinkAdapter.OrderViewHolder>{
+public class SoftDrinkAdapter extends RecyclerView.Adapter<SoftDrinkAdapter.SoftDrinkViewHolder>{
 
     private final Context context;
-    private final ArrayList<SoftDrink> orders;
+    private final ArrayList<SoftDrink> drinks;
 
     public SoftDrinkAdapter(Context c, ArrayList<SoftDrink> d) {
         context = c;
-        orders = d;
+        drinks = d;
     }
 
 
     @NonNull
     @Override
-    public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new OrderViewHolder(LayoutInflater.from(context).inflate(R.layout.order_item, viewGroup, false));
+    public SoftDrinkViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        return new SoftDrinkViewHolder(LayoutInflater.from(context).inflate(R.layout.drink_item, viewGroup, false));
     }
 
     /**
      * Binds the view to the corresponding holder
-     * @param orderViewHolder nested class to hold items
+     * @param softDrinkViewHolder nested class to hold items
      * @param i Integer to get the attributes of the drinkList
      */
     @Override
-    public void onBindViewHolder(@NonNull final OrderViewHolder orderViewHolder, int i) {
-        orderViewHolder.name.setText(orders.get(i).getName());
-        orderViewHolder.amount.setText(String.valueOf(orders.get(i).getAmount()));
-        orderViewHolder.price.setText(String.valueOf(orders.get(i).getPrice()));
+    public void onBindViewHolder(@NonNull final SoftDrinkViewHolder softDrinkViewHolder, int i) {
+        softDrinkViewHolder.name.setText(drinks.get(i).getName());
+        softDrinkViewHolder.price.setText(String.valueOf(drinks.get(i).getPrice()));
     }
 
     /**
@@ -47,20 +45,18 @@ public class SoftDrinkAdapter extends RecyclerView.Adapter<SoftDrinkAdapter.Orde
      */
     @Override
     public int getItemCount() {
-        return orders.size();
+        return drinks.size();
     }
 
-    static class OrderViewHolder extends RecyclerView.ViewHolder {
+    static class SoftDrinkViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name;
-        private TextView amount;
         private TextView price;
 
-        private OrderViewHolder(@NonNull View itemView) {
+        private SoftDrinkViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.name);
-            amount = itemView.findViewById(R.id.amount);
-            price = itemView.findViewById(R.id.price);
+            name = itemView.findViewById(R.id.inputName);
+            price = itemView.findViewById(R.id.inputPrice);
         }
     }
 

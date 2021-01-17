@@ -21,4 +21,9 @@
     <string name="drinkAmount">1</string>
     <string name="hardDrinks">Hard Drinks</string>
     <string name="softDrinks">Soft Drinks</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="name">Name</string>
+    <string name="price">Price</string>
+    <string name="title_add_soft_drink">Add Soft Drink</string>
 </resources>

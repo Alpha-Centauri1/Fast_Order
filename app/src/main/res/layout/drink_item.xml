@@ -1,40 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
-    android:layout_marginBottom="20dp"
     android:background="@drawable/order_item_panel"
     android:orientation="horizontal"
-    android:textAlignment="center">
+    android:layout_marginBottom="20dp"
+    android:layout_height="100dp"
+    android:layout_margin="10dp">
 
     <LinearLayout
-        android:layout_width="130dp"
-        android:layout_height="match_parent"
         android:layout_marginStart="16dp"
         android:orientation="vertical"
-        android:textAlignment="center">
+        android:layout_width="220dp"
+        android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:id="@+id/inputName"
             android:layout_marginTop="19dp"
-            android:text="@string/drinkName"
+            android:textSize="20sp"
             android:textColor="#000C5D"
-            android:textSize="30sp" />
+            android:text="@string/drinkName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/price"
+            android:id="@+id/inputPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
             android:layout_marginTop="8dp"
             android:text="@string/drinkAmount"
             android:textColor="#ADADAD"
-            android:textSize="25sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
-
 </LinearLayout>

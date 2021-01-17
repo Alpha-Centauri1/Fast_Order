@@ -44,7 +44,7 @@ public class AdminOrdersActivity extends AppCompatActivity {
         setContentView(R.layout.admin_orders);
 
         endpage = findViewById(R.id.endpage);
-        drinks = findViewById(R.id.drinks);
+        drinks = findViewById(R.id.orders);
         btnAddNew = findViewById(R.id.btnCreate);
         drinks.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
@@ -61,9 +61,9 @@ public class AdminOrdersActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // set code to retrieve data and replace layout
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
+                for(DataSnapshot snapshot: dataSnapshot.getChildren())
                 {
-                    Order order = dataSnapshot1.getValue(Order.class);
+                    Order order = snapshot.getValue(Order.class);
                     list.add(order);
                 }
                 adapter = new OrderAdapter(AdminOrdersActivity.this, list);

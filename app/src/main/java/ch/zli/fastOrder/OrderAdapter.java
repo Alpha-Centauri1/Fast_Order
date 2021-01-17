@@ -1,7 +1,6 @@
 package ch.zli.fastOrder;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,9 +57,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
         private OrderViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.name);
+            name = itemView.findViewById(R.id.inputName);
             amount = itemView.findViewById(R.id.amount);
-            price = itemView.findViewById(R.id.price);
+            price = itemView.findViewById(R.id.inputPrice);
         }
     }
 
