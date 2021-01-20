@@ -9,7 +9,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,16 +25,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executor;
 
 public class AdminOrdersActivity extends AppCompatActivity {
 
     private TextView endpage;
-    private Button btnAddNew;
+    private Button btnCreate;
 
     protected DatabaseReference reference;
     private RecyclerView drinks;
     private ArrayList<Order> list;
     private OrderAdapter adapter;
+    private Executor executor;
+    private BiometricPrompt biometricPrompt;
+    private BiometricPrompt.PromptInfo promptInfo;
 
     /**
      * Instantiate Activity through calling onCreate
@@ -45,7 +52,7 @@ public class AdminOrdersActivity extends AppCompatActivity {
 
         endpage = findViewById(R.id.endpage);
         drinks = findViewById(R.id.orders);
-        btnAddNew = findViewById(R.id.btnCreate);
+        btnCreate = findViewById(R.id.btnCreate);
         drinks.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
 
@@ -56,11 +63,49 @@ public class AdminOrdersActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
 
+        executor = ContextCompat.getMainExecutor(this);
+        biometricPrompt = new BiometricPrompt(AdminOrdersActivity.this,
+                executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode,
+                                              @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+                Toast.makeText(getApplicationContext(),
+                        "Authentication error: " + errString, Toast.LENGTH_SHORT)
+                        .show();
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(
+                    @NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                Toast.makeText(getApplicationContext(),
+                        "Authentication succeeded!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+                Toast.makeText(getApplicationContext(), "Authentication failed",
+                        Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
+
+        promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Biometric login for added security")
+                .setSubtitle("Please log in using your biometric credential")
+                .setNegativeButtonText("Use account password")
+                .build();
+
+        btnCreate.setOnClickListener(v -> {
+            biometricPrompt.authenticate(promptInfo);
+        });
+
         reference = FirebaseDatabase.getInstance().getReference().child("Client Orders");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // set code to retrieve data and replace layout
                 for(DataSnapshot snapshot: dataSnapshot.getChildren())
                 {
                     Order order = snapshot.getValue(Order.class);

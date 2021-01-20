@@ -17,7 +17,7 @@ import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AddSoftDrinkActivity extends AppCompatActivity {
+public class AddHardDrinkActivity extends AppCompatActivity {
 
     private EditText name, price;
     private Button btnAdd, btnCancel;
@@ -35,8 +35,8 @@ public class AddSoftDrinkActivity extends AppCompatActivity {
         btnCancel = findViewById(R.id.btnCancel);
 
         btnAdd.setOnClickListener(v -> {
-            reference = FirebaseDatabase.getInstance().getReference().child("Soft Drinks").
-                    child("SoftDrink" + num);
+            reference = FirebaseDatabase.getInstance().getReference().child("Hard Drinks").
+                    child("HardDrink" + num);
             reference.addValueEventListener(new ValueEventListener() {
 
                 /**
@@ -48,7 +48,7 @@ public class AddSoftDrinkActivity extends AppCompatActivity {
                     dataSnapshot.getRef().child("name").setValue(name.getText().toString());
                     dataSnapshot.getRef().child("price").setValue(Float.parseFloat(price.getText().toString()));
 
-                    Intent intent = new Intent(AddSoftDrinkActivity.this, AdminOrdersActivity.class);
+                    Intent intent = new Intent(AddHardDrinkActivity.this, AdminOrdersActivity.class);
                     startActivity(intent);
                 }
 
@@ -64,7 +64,7 @@ public class AddSoftDrinkActivity extends AppCompatActivity {
         });
 
         btnCancel.setOnClickListener(v -> {
-            Intent intent = new Intent(AddSoftDrinkActivity.this, AdminOrdersActivity.class);
+            Intent intent = new Intent(AddHardDrinkActivity.this, AdminOrdersActivity.class);
             startActivity(intent);
         });
     }

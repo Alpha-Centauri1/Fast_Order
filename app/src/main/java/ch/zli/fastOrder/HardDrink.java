@@ -1,15 +1,15 @@
 package ch.zli.fastOrder;
 
-public class SoftDrink {
+public class HardDrink {
 
     private String name;
     private float price;
 
-    public SoftDrink() {
+    public HardDrink() {
 
     }
 
-    public SoftDrink(String name, float price) {
+    public HardDrink(String name, float price) {
         this.name = name;
         this.price = price;
     }

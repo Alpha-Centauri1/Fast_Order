@@ -26,4 +26,5 @@
     <string name="name">Name</string>
     <string name="price">Price</string>
     <string name="title_add_soft_drink">Add Soft Drink</string>
+    <string name="delete">Delete</string>
 </resources>

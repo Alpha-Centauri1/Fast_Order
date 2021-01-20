@@ -21,15 +21,15 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SoftDrinkAdapter extends RecyclerView.Adapter<SoftDrinkAdapter.SoftDrinkViewHolder> {
+public class HardDrinkAdapter extends RecyclerView.Adapter<HardDrinkAdapter.HardDrinkViewHolder> {
 
     private final Context context;
-    private final ArrayList<SoftDrink> drinks;
+    private final ArrayList<HardDrink> drinks;
     private DatabaseReference reference;
     private Activity activity;
     public Button btnDelete;
 
-    public SoftDrinkAdapter(Context c, ArrayList<SoftDrink> d, Activity a) {
+    public HardDrinkAdapter(Context c, ArrayList<HardDrink> d, Activity a) {
         context = c;
         drinks = d;
         activity = a;
@@ -38,28 +38,28 @@ public class SoftDrinkAdapter extends RecyclerView.Adapter<SoftDrinkAdapter.Soft
 
     @NonNull
     @Override
-    public SoftDrinkViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new SoftDrinkViewHolder(LayoutInflater.from(context).inflate(R.layout.drink_item, viewGroup, false));
+    public HardDrinkViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        return new HardDrinkViewHolder(LayoutInflater.from(context).inflate(R.layout.drink_item, viewGroup, false));
     }
 
     /**
      * Binds the view to the corresponding holder
      *
-     * @param softDrinkViewHolder nested class to hold items
+     * @param hardDrinkViewHolder nested class to hold items
      * @param i                   Integer to get the attributes of the drinkList
      */
     @Override
-    public void onBindViewHolder(@NonNull final SoftDrinkViewHolder softDrinkViewHolder, int i) {
-        softDrinkViewHolder.name.setText(drinks.get(i).getName());
-        softDrinkViewHolder.price.setText(String.valueOf(drinks.get(i).getPrice()));
+    public void onBindViewHolder(@NonNull final HardDrinkViewHolder hardDrinkViewHolder, int i) {
+        hardDrinkViewHolder.name.setText(drinks.get(i).getName());
+        hardDrinkViewHolder.price.setText(String.valueOf(drinks.get(i).getPrice()));
 
         final String name = drinks.get(i).getName();
         btnDelete = activity.findViewById(R.id.btnDelete);
         btnDelete.setVisibility(View.GONE);
 
-        reference = FirebaseDatabase.getInstance().getReference().child("Soft Drinks");
+        reference = FirebaseDatabase.getInstance().getReference().child("Hard Drinks");
 
-        softDrinkViewHolder.itemView.setOnClickListener(v -> {
+        hardDrinkViewHolder.itemView.setOnClickListener(v -> {
             btnDelete.setVisibility(View.VISIBLE);
             System.out.println("Click Item");
 
@@ -97,12 +97,12 @@ public class SoftDrinkAdapter extends RecyclerView.Adapter<SoftDrinkAdapter.Soft
         return drinks.size();
     }
 
-    static class SoftDrinkViewHolder extends RecyclerView.ViewHolder {
+    static class HardDrinkViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name;
         private TextView price;
 
-        private SoftDrinkViewHolder(@NonNull View itemView) {
+        private HardDrinkViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.inputName);
             price = itemView.findViewById(R.id.inputPrice);

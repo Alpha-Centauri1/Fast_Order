@@ -1,4 +1,4 @@
-package ch.zli.fastOrder.ui.dashboard;
+package ch.zli.fastOrder.ui.hardDrinks;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridLayout;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,52 +17,52 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import ch.zli.fastOrder.AddSoftDrinkActivity;
-import ch.zli.fastOrder.AdminOrdersActivity;
+import ch.zli.fastOrder.AddHardDrinkActivity;
+import ch.zli.fastOrder.HardDrink;
+import ch.zli.fastOrder.HardDrinkAdapter;
 import ch.zli.fastOrder.R;
-import ch.zli.fastOrder.SoftDrink;
-import ch.zli.fastOrder.SoftDrinkAdapter;
 
-public class DashboardFragment extends Fragment {
+public class NotificationsFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
     protected DatabaseReference reference;
     private RecyclerView drinks;
-    private ArrayList<SoftDrink> list;
-    private SoftDrinkAdapter adapter;
+    private ArrayList<HardDrink> list;
+    private HardDrinkAdapter adapter;
     private Button btnAddSoftDrink;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-            ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_hard_drink, container, false);
         btnAddSoftDrink = root.findViewById(R.id.btnAddSoftDrink);
         drinks = root.findViewById(R.id.drinks);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
         gridLayoutManager.offsetChildrenVertical(5);
         drinks.setLayoutManager(gridLayoutManager);
         list = new ArrayList<>();
+        adapter = new HardDrinkAdapter(getActivity(), list, getActivity());
 
         btnAddSoftDrink.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), AddSoftDrinkActivity.class);
+            Intent intent = new Intent(getActivity(), AddHardDrinkActivity.class);
             startActivity(intent);
         });
 
-        reference = FirebaseDatabase.getInstance().getReference().child("Soft Drinks");
+        onListenDataChange();
+
+        return root;
+    }
+
+    public void onListenDataChange() {
+
+
+        reference = FirebaseDatabase.getInstance().getReference().child("Hard Drinks");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot: dataSnapshot.getChildren())
-                {
-                    SoftDrink softDrink = snapshot.getValue(SoftDrink.class);
-                    list.add(softDrink);
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    HardDrink hardDrink = snapshot.getValue(HardDrink.class);
+                    list.add(hardDrink);
                 }
-                adapter = new SoftDrinkAdapter(getActivity(), list);
                 drinks.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }
@@ -74,6 +73,5 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        return root;
     }
 }
