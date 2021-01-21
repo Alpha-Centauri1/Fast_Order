@@ -36,9 +36,6 @@ public class AdminOrdersActivity extends AppCompatActivity {
     private RecyclerView drinks;
     private ArrayList<Order> list;
     private OrderAdapter adapter;
-    private Executor executor;
-    private BiometricPrompt biometricPrompt;
-    private BiometricPrompt.PromptInfo promptInfo;
 
     /**
      * Instantiate Activity through calling onCreate
@@ -62,45 +59,6 @@ public class AdminOrdersActivity extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
-
-        executor = ContextCompat.getMainExecutor(this);
-        biometricPrompt = new BiometricPrompt(AdminOrdersActivity.this,
-                executor, new BiometricPrompt.AuthenticationCallback() {
-            @Override
-            public void onAuthenticationError(int errorCode,
-                                              @NonNull CharSequence errString) {
-                super.onAuthenticationError(errorCode, errString);
-                Toast.makeText(getApplicationContext(),
-                        "Authentication error: " + errString, Toast.LENGTH_SHORT)
-                        .show();
-            }
-
-            @Override
-            public void onAuthenticationSucceeded(
-                    @NonNull BiometricPrompt.AuthenticationResult result) {
-                super.onAuthenticationSucceeded(result);
-                Toast.makeText(getApplicationContext(),
-                        "Authentication succeeded!", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onAuthenticationFailed() {
-                super.onAuthenticationFailed();
-                Toast.makeText(getApplicationContext(), "Authentication failed",
-                        Toast.LENGTH_SHORT)
-                        .show();
-            }
-        });
-
-        promptInfo = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle("Biometric login for added security")
-                .setSubtitle("Please log in using your biometric credential")
-                .setNegativeButtonText("Use account password")
-                .build();
-
-        btnCreate.setOnClickListener(v -> {
-            biometricPrompt.authenticate(promptInfo);
-        });
 
         reference = FirebaseDatabase.getInstance().getReference().child("Client Orders");
         reference.addValueEventListener(new ValueEventListener() {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Admin Fast Order</string>
+    <string name="app_name">Fast Order</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -27,4 +27,6 @@
     <string name="price">Price</string>
     <string name="title_add_soft_drink">Add Soft Drink</string>
     <string name="delete">Delete</string>
+    <string name="order">Order</string>
+    <string name="total">Total</string>
 </resources>

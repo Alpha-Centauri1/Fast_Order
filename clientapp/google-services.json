@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "162460502240",
+    "firebase_url": "https://fast-order-11-default-rtdb.firebaseio.com",
+    "project_id": "fast-order-11",
+    "storage_bucket": "fast-order-11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:162460502240:android:fb9491f73e2d1c473de885",
+        "android_client_info": {
+          "package_name": "ch.zli.clientapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "162460502240-dljjok4imibhrcqdn35s8vgs9sbsv6kb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASDvSJt2RqmCuqK2196Ofy8jbdZm3LmM8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "162460502240-dljjok4imibhrcqdn35s8vgs9sbsv6kb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:162460502240:android:fc7be781f6f048f33de885",
+        "android_client_info": {
+          "package_name": "ch.zli.fastOrder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "162460502240-dljjok4imibhrcqdn35s8vgs9sbsv6kb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASDvSJt2RqmCuqK2196Ofy8jbdZm3LmM8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "162460502240-dljjok4imibhrcqdn35s8vgs9sbsv6kb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
