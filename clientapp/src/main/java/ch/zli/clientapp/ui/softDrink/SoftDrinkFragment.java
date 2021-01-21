@@ -46,6 +46,7 @@ public class SoftDrinkFragment extends Fragment {
         drinks.setLayoutManager(gridLayoutManager);
         list = new ArrayList<>();
         adapter = new SoftDrinkAdapter(getActivity(), list, getActivity());
+        drinks.setAdapter(adapter);
 
         onListenDataChange();
 
@@ -54,22 +55,24 @@ public class SoftDrinkFragment extends Fragment {
 
     public void onListenDataChange() {
         reference = FirebaseDatabase.getInstance().getReference().child("Soft Drinks");
-        reference.addValueEventListener(new ValueEventListener() {
+        ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                list.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     SoftDrink softDrink = snapshot.getValue(SoftDrink.class);
                     list.add(softDrink);
                 }
-                drinks.setAdapter(adapter);
+
                 adapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println(error);
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println(databaseError);
             }
-        });
+        };
+        reference.addValueEventListener(listener);
 
     }
 }
