@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,11 +31,11 @@ public class NotificationsFragment extends Fragment {
     private RecyclerView drinks;
     private ArrayList<HardDrink> list;
     private HardDrinkAdapter adapter;
-    private Button btnAddSoftDrink;
+    private FloatingActionButton btnAddSoftDrink;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_hard_drink, container, false);
-        btnAddSoftDrink = root.findViewById(R.id.btnAddSoftDrink);
+        btnAddSoftDrink = root.findViewById(R.id.btnAddHardDrink);
         drinks = root.findViewById(R.id.drinks);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
         gridLayoutManager.offsetChildrenVertical(5);

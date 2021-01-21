@@ -30,18 +30,11 @@ import java.util.concurrent.Executor;
 public class AdminOrdersActivity extends AppCompatActivity {
 
     private TextView endpage;
-    private Button btnCreate;
-
     protected DatabaseReference reference;
     private RecyclerView drinks;
     private ArrayList<Order> list;
     private OrderAdapter adapter;
 
-    /**
-     * Instantiate Activity through calling onCreate
-     * Only called once, when application is being instantiated
-     * @param savedInstanceState a Bundle object containing the activity's previously saved state
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +42,11 @@ public class AdminOrdersActivity extends AppCompatActivity {
 
         endpage = findViewById(R.id.endpage);
         drinks = findViewById(R.id.orders);
-        btnCreate = findViewById(R.id.btnCreate);
         drinks.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
+        reference = FirebaseDatabase.getInstance().getReference().child("Client Orders");
+        adapter = new OrderAdapter(AdminOrdersActivity.this, list);
+        drinks.setAdapter(adapter);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -60,18 +55,22 @@ public class AdminOrdersActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
 
-        reference = FirebaseDatabase.getInstance().getReference().child("Client Orders");
-        reference.addValueEventListener(new ValueEventListener() {
+
+        ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                list.clear();
                 for(DataSnapshot snapshot: dataSnapshot.getChildren())
                 {
                     Order order = snapshot.getValue(Order.class);
+                    System.out.println(order.getName());
                     list.add(order);
                 }
-                adapter = new OrderAdapter(AdminOrdersActivity.this, list);
-                drinks.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+
+                for (Order order : list) {
+                    System.out.println(order.getName());
+                }
 
                 if (adapter.getItemCount() != 0) {
                     endpage.setText("");
@@ -82,7 +81,8 @@ public class AdminOrdersActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println(databaseError);
             }
-        });
+        };
+        reference.addValueEventListener(listener);
 
     }
 }

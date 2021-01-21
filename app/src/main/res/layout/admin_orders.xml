@@ -35,41 +35,15 @@
                         android:id="@+id/titlepage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginStart="90dp"
                         android:text="@string/clientOrders"
                         android:textColor="#FFF"
                         android:textSize="32sp" />
 
-                    <TextView
-                        android:id="@+id/subtitlepage"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/placeholder"
-                        android:textColor="#4A4E6A"
-                        android:textSize="18sp" />
-
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/btnCreate"
-                    android:layout_width="52dp"
-                    android:layout_height="52dp"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginTop="35dp"
-                    android:background="@drawable/createbtn"
-                    android:text="@string/plus"
-                    android:textAlignment="center"
-                    android:textColor="#FFF"
-                    android:textSize="38sp" />
-
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="20dp"
-                android:background="#131E69" />
 
         </LinearLayout>
 

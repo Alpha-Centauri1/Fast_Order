@@ -52,11 +52,6 @@ public class AddSoftDrinkActivity extends AppCompatActivity {
             reference = FirebaseDatabase.getInstance().getReference().child("Soft Drinks").
                     child("SoftDrink" + num);
             reference.addValueEventListener(new ValueEventListener() {
-
-                /**
-                 *Call this method when database is ready
-                 * @param dataSnapshot is an efficiently generated copy of the data at a Database location
-                 */
                 @Override
                 public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
                     dataSnapshot.getRef().child("name").setValue(name.getText().toString());
@@ -69,10 +64,6 @@ public class AddSoftDrinkActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
-                /**
-                 * Method is only called, when something went wrong
-                 * @param databaseError contains the data to what went wrong, like message and status code
-                 */
                 @Override
                 public void onCancelled(@NotNull DatabaseError databaseError) {
                     System.out.println(databaseError);

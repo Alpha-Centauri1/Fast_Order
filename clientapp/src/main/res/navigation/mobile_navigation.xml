@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_dashboard">
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="ch.zli.clientapp.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_Client_Orders"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="ch.zli.clientapp.ui.softDrink.SoftDrinkFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_Soft_Drinks"
         tools:layout="@layout/fragment_soft_drink" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="ch.zli.clientapp.ui.hardDrink.HardDrinkFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_Hard_Drinks"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

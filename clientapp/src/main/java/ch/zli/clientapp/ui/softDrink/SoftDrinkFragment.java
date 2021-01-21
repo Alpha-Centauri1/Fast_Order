@@ -34,14 +34,12 @@ public class SoftDrinkFragment extends Fragment {
     private RecyclerView drinks;
     private ArrayList<SoftDrink> list;
     private SoftDrinkAdapter adapter;
-    private TextView total;
     private Button order;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_soft_drink, container, false);
         drinks = root.findViewById(R.id.drinks);
-        total = root.findViewById(R.id.totalValue);
         order = root.findViewById(R.id.order);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
         gridLayoutManager.offsetChildrenVertical(5);

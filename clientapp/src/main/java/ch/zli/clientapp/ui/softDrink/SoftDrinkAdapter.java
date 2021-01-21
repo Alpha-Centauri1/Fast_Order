@@ -34,7 +34,7 @@ public class SoftDrinkAdapter extends RecyclerView.Adapter<SoftDrinkAdapter.Soft
     private final ArrayList<SoftDrink> drinks;
     private DatabaseReference reference;
     private Activity activity;
-    private TextView total, name, price, amount;
+    private TextView name, price, amount;
     private Button order;
     private SoftDrinkViewHolder softDrinkViewHolder;
     private Integer num = new Random().nextInt();
@@ -64,12 +64,8 @@ public class SoftDrinkAdapter extends RecyclerView.Adapter<SoftDrinkAdapter.Soft
         softDrinkViewHolder.price.setText(String.valueOf(drinks.get(i).getPrice()));
         this.softDrinkViewHolder = softDrinkViewHolder;
 
-        Float price = drinks.get(i).getPrice();
-        ArrayList<Float> accumulatedPrices = new ArrayList<>();
         AtomicInteger clicked = new AtomicInteger();
-        total = activity.findViewById(R.id.totalValue);
         reference = FirebaseDatabase.getInstance().getReference().child("Soft Drinks");
-
 
         softDrinkViewHolder.itemView.setOnClickListener(v -> {
             clicked.getAndIncrement();
@@ -79,11 +75,7 @@ public class SoftDrinkAdapter extends RecyclerView.Adapter<SoftDrinkAdapter.Soft
             this.amount = v.findViewById(R.id.amount);
 
             softDrinkViewHolder.amount.setText(String.valueOf(clicked));
-            Float totalValue = Float.parseFloat(String.valueOf(this.amount.getText())) * Float.parseFloat(String.valueOf(this.price.getText()));
-            total.setText(String.valueOf(totalValue));
         });
-
-        System.out.println(softDrinkViewHolder.amount.getText() + " " + softDrinkViewHolder.price.getText());
 
         order = activity.findViewById(R.id.order);
         order.setOnClickListener(v -> {
@@ -95,7 +87,6 @@ public class SoftDrinkAdapter extends RecyclerView.Adapter<SoftDrinkAdapter.Soft
             public boolean onLongClick(View v) {
                 clicked.set(0);
                 softDrinkViewHolder.amount.setText("");
-                total.setText("");
                 return true;
             }
         });
@@ -107,22 +98,13 @@ public class SoftDrinkAdapter extends RecyclerView.Adapter<SoftDrinkAdapter.Soft
         order.setOnClickListener(v -> {
             reference = FirebaseDatabase.getInstance().getReference().child("Client Orders").
                     child("ClientOrder" + num);
-            reference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
-                    dataSnapshot.getRef().child("name").setValue(name.getText().toString());
-                    dataSnapshot.getRef().child("price").setValue(Float.parseFloat(price.getText().toString()));
-                    dataSnapshot.getRef().child("amount").setValue(Float.parseFloat(amount.getText().toString()));
 
-                    Intent intent = new Intent(activity, OrdersActivity.class);
-                    activity.startActivity(intent);
-                }
+            reference.child("name").setValue(name.getText().toString());
+            reference.getRef().child("price").setValue(Float.parseFloat(price.getText().toString()));
+            reference.getRef().child("amount").setValue(Float.parseFloat(amount.getText().toString()));
 
-                @Override
-                public void onCancelled(@NotNull DatabaseError databaseError) {
-                    System.out.println(databaseError);
-                }
-            });
+            Intent intent = new Intent(activity, OrdersActivity.class);
+            activity.startActivity(intent);
         });
     }
 

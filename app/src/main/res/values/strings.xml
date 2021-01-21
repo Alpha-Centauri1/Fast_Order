@@ -8,11 +8,12 @@
     <string name="previous">Previous</string>
 
     <string name="title_activity_soft_drinks_actitvity">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_Client_Orders">Orders</string>
+    <string name="title_Soft_Drinks">Soft Drinks</string>
+    <string name="title_Hard_Drinks">Hard Drinks</string>
 
     <string name="placeholder">Please select one of the drinks</string>
+    <string name="deleteDrink">Please select one of the drinks to delete</string>
     <string name="ordersNotFound">No client orders found</string>
     <string name="clientOrders">Client Orders</string>
     <string name="plus">+</string>
@@ -26,5 +27,6 @@
     <string name="name">Name</string>
     <string name="price">Price</string>
     <string name="title_add_soft_drink">Add Soft Drink</string>
+    <string name="title_add_hard_drink">Add Hard Drink</string>
     <string name="delete">Delete</string>
 </resources>

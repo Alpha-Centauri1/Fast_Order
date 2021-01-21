@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="ch.zli.fastOrder.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_Client_Orders"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="ch.zli.fastOrder.ui.softDrinks.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_softDrink" />
+        android:label="@string/title_Soft_Drinks"
+        tools:layout="@layout/fragment_soft_drink" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="ch.zli.fastOrder.ui.hardDrinks.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_Hard_Drinks"
         tools:layout="@layout/fragment_hard_drink" />
 </navigation>

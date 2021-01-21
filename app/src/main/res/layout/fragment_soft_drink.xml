@@ -39,7 +39,7 @@
                 <TextView
                     android:id="@+id/subtitlepage"
                     android:textSize="18sp"
-                    android:textColor="#4A4E6A"
+                    android:textColor="@color/white"
                     android:layout_marginTop="8dp"
                     android:text="@string/placeholder"
                     android:layout_width="match_parent"
@@ -47,25 +47,19 @@
 
             </LinearLayout>
 
-            <Button
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnAddSoftDrink"
-                android:layout_width="52dp"
+                android:layout_width="0dp"
                 android:layout_height="52dp"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="65dp"
                 android:layout_marginTop="35dp"
-                android:background="@drawable/createbtn"
-                android:text="@string/plus"
+                android:layout_weight="1"
+                android:clickable="true"
                 android:textAlignment="center"
-                android:textColor="#FFF"
-                android:textSize="38sp" />
+                android:backgroundTint="@color/white"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
         </LinearLayout>
-
-        <View
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:background="#131E69"
-            android:layout_height="1dp" />
 
     </LinearLayout>
 

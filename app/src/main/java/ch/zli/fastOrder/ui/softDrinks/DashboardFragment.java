@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +31,7 @@ public class DashboardFragment extends Fragment {
     private RecyclerView drinks;
     private ArrayList<SoftDrink> list;
     private SoftDrinkAdapter adapter;
-    private Button btnAddSoftDrink;
+    private FloatingActionButton btnAddSoftDrink;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

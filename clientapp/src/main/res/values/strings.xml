@@ -8,9 +8,9 @@
     <string name="previous">Previous</string>
 
     <string name="title_activity_soft_drinks_actitvity">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_Client_Orders">Orders</string>
+    <string name="title_Soft_Drinks">Soft Drinks</string>
+    <string name="title_Hard_Drinks">Hard Drinks</string>
 
     <string name="placeholder">Please select one of the drinks</string>
     <string name="ordersNotFound">No client orders found</string>
